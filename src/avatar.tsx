@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SignIn from './sign-in';
 
-type Child = {
-  childId: string;
-  name: { firstName: string, fullName: string };
-  image: { small: string };
-}
+export default function Avatar(child: Child) {
+  const [showSignIn, setShowSignIn] = useState(false);
 
-
-export default function Avatar({ image, name }: Child) {
   return (
-      <div className='child'>
-        <img src={image.small} alt="" />
-        <p>{name.firstName}</p>
+    <>
+      <div onClick={() => setShowSignIn(true)} className='child'>
+        <img src={child.image.small} alt="" />
+        <p>{child.name.firstName}</p>
       </div>
+
+      { showSignIn &&
+        <SignIn {...child} />
+      }
+    </>
   )
 }
