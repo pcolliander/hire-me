@@ -12,7 +12,7 @@ export default function Avatar(child: Child) {
       </div>
 
       { showSignIn &&
-        <SignIn {...child} />
+        <SignIn child={child} onClose={() => setShowSignIn(false)} />
       }
     </>
   )

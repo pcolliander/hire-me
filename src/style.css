@@ -1,8 +1,16 @@
 @import "tailwindcss/base";
 @import 'components.css';
 
+h1 {
+  @apply text-3xl my-5;
+}
+
 .App {
   @apply p-8; 
+
+  @media (max-width: 640px) {
+    padding: 1rem;
+  }
 }
 
 .child {
@@ -10,18 +18,11 @@
 }
 
 .children__container {
-  @apply flex;
-
-  flex-wrap: wrap;
+  @apply flex justify-around flex-wrap;
 
   & img {
     border-radius: 50%;
     height: auto;
   }
 }
-
-h1 {
-  @apply text-3xl;
-}
-
 
