@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Avatar from './avatar';
 import './App.css';
 
 const accessToken = '234ffdb8-0889-4be3-b096-97ab1679752c';
@@ -7,24 +8,17 @@ const institutionId = 'fb6c8114-387e-4051-8cf7-4e388a77b673';
 
 const fetchChildren = (setChildren: Function) => {
   window.fetch(`https://tryfamly.co/api/daycare/tablet/group?accessToken=${accessToken}&groupId=${groupId}&institutionId=${institutionId}`)
-  .then(response => response.json())
-  .then(data => setChildren(data.children));
+        .then(response => response.json())
+        .then(data => setChildren(data.children));
 }
 
 type Child = {
-  name: { fullName: string };
+  childId: string;
+  name: { firstName: string, fullName: string };
   image: { small: string };
 }
 
-const Avatar = ({ image } : Child) => {
-  return (
-      <div>
-        <img src={image.small} alt="" />
-      </div>
-  )
-}
-
-function App() {
+export default function App() {
   const [children, setChildren] = useState<Child[]>([]);
 
   useEffect(() => {
@@ -35,11 +29,11 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Elephants</h1>
       <div className='children__container'>
-        {children.map(child => <Avatar {...child} /> )}
+        {children.map(child => <Avatar {...child} key={child.childId} /> )}
       </div>
     </div>
   );
 }
 
-export default App;

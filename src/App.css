@@ -2,6 +2,10 @@
   padding: 2rem;
 }
 
+.child {
+  @apply flex flex-col items-center text-gray-600 mr-5 mb-5;
+}
+
 .children__container {
   @apply flex;
 
