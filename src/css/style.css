@@ -15,16 +15,39 @@ h1 {
 
 .child {
   @apply flex flex-col items-center text-gray-600 mr-5 mb-5 cursor-pointer;
+
+  &.checked-in {
+    /* border: 1px solid green; */
+  }
 }
 
 .children__container {
-  @apply flex justify-around flex-wrap;
+  @apply flex flex-wrap;
 
-  & img {
+   & img {
     border-radius: 50%;
     height: auto;
+    border: 3px solid transparent;
   }
+
+  & .checked-in {
+    p::after {
+      content: ' ✔';
+      font-size: 1.2rem;
+    }
+
+    img {
+      border: 3px solid green;
+    }
+  }
+
+  @media (max-width: 1400px) {
+   @apply justify-between ;
+ }
+
 }
+
+
 
 .sign-in {
   @apply w-full;
