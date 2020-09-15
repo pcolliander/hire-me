@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import ReactDom from 'react-dom';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 const Portal = ({ children }: any) => {
   return ReactDom.createPortal(
@@ -9,25 +8,32 @@ const Portal = ({ children }: any) => {
   );
 }
 
+// Hook
+
+function useLockBodyScroll() {
+  useLayoutEffect(() => {
+
+    // Get original body overflow
+    const originalStyle = window.getComputedStyle(document.body).overflow;  
+
+    // Prevent scrolling on mount
+    document.body.style.overflow = 'hidden';
+
+    // Re-enable scrolling when component unmounts
+    return () => {
+      document.body.style.overflow = originalStyle;
+    }
+
+  }, []); // Empty array ensures effect is only run on mount and unmount
+}
+
 export default function({ children } :any) {
-  const targetRef = React.createRef<HTMLInputElement>();
-
-  useEffect(() => {
-    if (targetRef.current) {
-      disableBodyScroll(targetRef.current)
-    }
-
-    return function cleanup() {
-      if (targetRef.current) {
-        enableBodyScroll(targetRef.current);
-      }
-    }
-  }, []);
+  useLockBodyScroll();
 
   return (
     <Portal>
       <div className='backdrop'></div>
-      <div ref={targetRef} className='modal'>{children}</div>
+      <div className='modal'>{children}</div>
     </Portal>
   );
 }

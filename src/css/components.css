@@ -28,6 +28,5 @@
   height: 100vh;
   margin: 0 auto;
   width: 500px;
-  left: calc(50% - @width/2);
 }
 
