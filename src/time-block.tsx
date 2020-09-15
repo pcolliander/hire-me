@@ -8,10 +8,9 @@ type Props = {
 
 export default function({ isSelected, children, onClick }: Props) {
   return (
-      <div className='sign-in__time-block' onClick={() => onClick()}>
-        {children}
-      </div>
+    <div className={`sign-in__time-block ${isSelected && "selected"}`} onClick={() => onClick()}>
+      {children}
+    </div>
   );
 }
-
 
