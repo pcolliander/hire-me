@@ -1,5 +1,8 @@
+@import "tailwindcss/base";
+@import 'components.css';
+
 .App {
-  padding: 2rem;
+  @apply p-8; 
 }
 
 .child {
@@ -17,7 +20,8 @@
   }
 }
 
-
-.children__container img {
-  /* width: 200px; */
+h1 {
+  @apply text-3xl;
 }
+
+
