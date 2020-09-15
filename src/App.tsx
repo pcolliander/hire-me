@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
+const accessToken = '234ffdb8-0889-4be3-b096-97ab1679752c';
+const groupId = '11fc220c-ebba-4e55-9346-cd1eed714620';
+const institutionId = 'fb6c8114-387e-4051-8cf7-4e388a77b673';
+
+const fetchChildren = (setChildren: Function) => {
+  window.fetch(`https://tryfamly.co/api/daycare/tablet/group?accessToken=${accessToken}&groupId=${groupId}&institutionId=${institutionId}`)
+  .then(response => response.json())
+  .then(data => setChildren(data.children));
+}
+
+type Child = {
+  name: { fullName: string };
+  image: { small: string };
+}
+
+const Avatar = ({ image } : Child) => {
+  return (
+      <div>
+        <img src={image.small} alt="" />
+      </div>
+  )
+}
+
 function App() {
+  const [children, setChildren] = useState<Child[]>([]);
+
+  useEffect(() => {
+    fetchChildren(setChildren);
+  }, []);
+
+  console.log('children', children);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='children__container'>
+        {children.map(child => <Avatar {...child} /> )}
+      </div>
     </div>
   );
 }
