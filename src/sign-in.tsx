@@ -10,6 +10,30 @@ type Props = {
   onClose: Function;
 }
 
+/* POST https://tryfamly.co/api/v2/children/<childId>/checkins */
+
+const accessToken = '234ffdb8-0889-4be3-b096-97ab1679752c';
+
+const checkin = (childId: string, pickupTime: string) => {
+ window.fetch(`https://tryfamly.co/api/v2/children/${childId}/checkins?accessToken=${accessToken}`, {
+   method: 'POST',
+   body: JSON.stringify({ pickupTime })
+ })
+}
+
+/* Arguments: { */
+/* 	accessToken: <accessToken> */
+/* 	pickupTime: 16:00 */
+/* } */
+/* ``` */
+
+/* ### Checkout child */
+/* POST https://tryfamly.co/api/v2/children/<childId>/checkout */
+/* Arguments: { */
+/* 	accessToken: <accessToken> */
+/* } */
+
+
 export default function SignIn ({ child, onClose }: Props) {
   const [selectedHour, setSelectedHour] = useState<string>("");
   const [selectedQuarter, setSelectedQuarter] = useState<string>("00");
@@ -38,7 +62,9 @@ export default function SignIn ({ child, onClose }: Props) {
         <div>
           <button className='button secondary' onClick={() => onClose()}>Close</button>
           { selectedHour && selectedQuarter &&
-            <button className='button primary'>I confirm {child.name.firstName} will be picked up at {selectedHour}:{selectedQuarter}</button>
+            <button 
+              onClick={(() => checkin(child.childId, `${selectedHour}:${selectedQuarter}`))}
+              className='button primary'>I confirm {child.name.firstName} will be picked up at {selectedHour}:{selectedQuarter}</button>
           }
           </div>
       </div>
