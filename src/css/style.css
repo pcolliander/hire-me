@@ -15,16 +15,12 @@ h1 {
 
 .child {
   @apply flex flex-col items-center text-gray-500 mr-5 mb-5 cursor-pointer;
-
-  &.checked-in {
-    /* border: 1px solid green; */
-  }
 }
 
 .children__container {
   @apply flex flex-wrap;
 
-   & img {
+   & img.avatar {
     border-radius: 50%;
     height: auto;
     border: 3px solid #e3e3e3;
@@ -37,15 +33,15 @@ h1 {
       @apply text-green-600;
 
       font-weight: 800;
-
-      &::after {
-        content: ' ✔';
-      }
     }
 
-    img {
-      border: 5px solid rgba(56,161,105,var(--text-opacity));
+    img.avatar {
+      border: 3px solid rgba(56,161,105,var(--text-opacity));
       opacity: 1;
+    }
+
+    img.checkmark {
+      width: 20px;
     }
   }
 
@@ -54,8 +50,6 @@ h1 {
  }
 
 }
-
-
 
 .sign-in {
   @apply w-full;
