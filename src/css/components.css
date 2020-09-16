@@ -9,9 +9,6 @@
       @apply bg-blue-700;
     }
   }
-
-  &.secondary {
-  }
 }
 
 .backdrop {

@@ -16,12 +16,7 @@ const checkin = (childId: string, pickupTime: string) => {
    method: 'POST',
    body: JSON.stringify({ pickupTime })
  })
-}
-
-const checkout = (childId: string) => {
- window.fetch(`https://tryfamly.co/api/v2/children/${childId}/checkout?accessToken=${constants.accessToken}`, {
-   method: 'POST',
- })
+ .then(() => window.location.reload())
 }
 
 export default function SignIn ({ child, onClose }: Props) {
@@ -31,7 +26,7 @@ export default function SignIn ({ child, onClose }: Props) {
   return (
     <Modal>
       <div className='sign-in'>
-        <h1>{child.name.fullName}</h1>
+        <h1>Sign in {child.name.fullName}</h1>
         <h2>What hour can {child.name.firstName} be picked up?</h2>
         <div className='sign-in__hours' >
           { hours.map(hour => <TimeBlock onClick={() => setSelectedHour(hour)} isSelected={hour === selectedHour}  key={hour}>{hour}:00</TimeBlock>) } 
@@ -40,7 +35,7 @@ export default function SignIn ({ child, onClose }: Props) {
             <h2>
               { selectedHour
                 ?  'Please specify what quarter of the hour'
-                : <i>(After selecting an hour you can specify quarter)</i>
+                : <i>(After selecting an hour you can specify quarter of the hour)</i>
               }
             </h2>
             { selectedHour &&
@@ -49,8 +44,8 @@ export default function SignIn ({ child, onClose }: Props) {
               </div>
             }
 
-        <div>
-          <button className='button secondary' onClick={() => onClose()}>Close</button>
+        <div className='modal__footer'>
+          <button className='button' onClick={() => onClose()}>Close</button>
           { selectedHour && selectedQuarter &&
             <button 
               onClick={(() => checkin(child.childId, `${selectedHour}:${selectedQuarter}`))}
