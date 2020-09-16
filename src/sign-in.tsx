@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './modal';
 import TimeBlock from './time-block';
-import constants from './constants';
+import api from './api';
 
 const hours = ['08', '09', '10', '11', '12', '13', '14', '15', '16' ];
 const quarters = ['00', '15', '30', '45'];
@@ -11,17 +11,9 @@ type Props = {
   onClose: Function;
 }
 
-const checkin = (childId: string, pickupTime: string) => {
- window.fetch(`https://tryfamly.co/api/v2/children/${childId}/checkins?accessToken=${constants.accessToken}`, {
-   method: 'POST',
-   body: JSON.stringify({ pickupTime })
- })
- .then(() => window.location.reload())
-}
-
 export default function SignIn ({ child, onClose }: Props) {
   const [selectedHour, setSelectedHour] = useState<string>("");
-  const [selectedQuarter, setSelectedQuarter] = useState<string>("00");
+  const [selectedQuarter, setSelectedQuarter] = useState<string>(quarters[0]);
 
   return (
     <Modal>
@@ -48,7 +40,7 @@ export default function SignIn ({ child, onClose }: Props) {
           <button className='button' onClick={() => onClose()}>Close</button>
           { selectedHour && selectedQuarter &&
             <button 
-              onClick={(() => checkin(child.childId, `${selectedHour}:${selectedQuarter}`))}
+              onClick={(() => api.signIn(child.childId, `${selectedHour}:${selectedQuarter}`))}
               className='button primary'>I confirm {child.name.firstName} will be picked up at {selectedHour}:{selectedQuarter}</button>
           }
           </div>

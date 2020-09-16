@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Avatar from './avatar';
+import api from './api';
 import './css/style.css';
-import constants from './constants';
-
-const fetchChildren = (setChildren: Function) => {
-  window.fetch(`https://tryfamly.co/api/daycare/tablet/group?accessToken=${constants.accessToken}&groupId=${constants.groupId}&institutionId=${constants.institutionId}`)
-        .then(response => response.json())
-        .then(data => setChildren(data.children));
-}
 
 export default function App() {
   const [children, setChildren] = useState<Child[]>([]);
 
   useEffect(() => {
-    fetchChildren(setChildren);
+    api.fetchChildren(setChildren);
   }, []);
-
-  console.log('children', children);
 
   return (
     <div className="App">

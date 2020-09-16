@@ -76,6 +76,10 @@ h1 {
   height: 33vh;
   width: 100vw;
 
+  & h1 {
+    @apply m-0;
+  }
+
   .sign-out__child {
     @apply flex flex-col items-center;
 
@@ -85,9 +89,5 @@ h1 {
       max-width: 100px;
     }
   }
-}
-
-.modal__footer {
-  @apply flex justify-between;
 }
 

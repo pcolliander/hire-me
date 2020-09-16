@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
-import constants from './constants';
+import React from 'react';
+import api from './api';
 import Modal from './modal';
 
 type Props = {
   child: Child;
   onClose: Function;
-}
-
-const signOut = (childId: string) => {
- window.fetch(`https://tryfamly.co/api/v2/children/${childId}/checkout?accessToken=${constants.accessToken}`, {
-   method: 'POST',
- })
- .then(() => window.location.reload());
 }
 
 export default function SignOut({ child, onClose }: Props) {
@@ -24,7 +17,7 @@ export default function SignOut({ child, onClose }: Props) {
         </div>
         <div className='modal__footer'>
           <button className='button' onClick={() => onClose()}>Close</button>
-          <button onClick={() => signOut(child.childId)} className='button primary'>Sign out {child.name.firstName}</button>
+          <button onClick={() => api.signOut(child.childId)} className='button primary'>Sign out {child.name.firstName}</button>
         </div>
       </div>
     </Modal>

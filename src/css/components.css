@@ -23,3 +23,7 @@
   @apply p-8 text-white z-50 fixed top-0;
 }
 
+.modal__footer {
+  @apply flex justify-between;
+}
+

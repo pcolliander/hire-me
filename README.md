@@ -1,35 +1,15 @@
-# Interested in working for Famly?
 
-Show us your mad coding skills by forking this repository and create a small application in React that can list children with possibility to check them in and out.
+## Design Decisions
 
-If you have any questions feel free to reach out to nd@famly.co.
+## Dependencies
 
-Access token: `234ffdb8-0889-4be3-b096-97ab1679752c`
+The dependencies in the project are postcss plugins. I enjoy writing css using postcss plugins as it lets me add functionality to css to make it easier to maintain.
 
-### Fetch some children from
-```
-GET https://tryfamly.co/api/daycare/tablet/group
-Arguments: {
-	accessToken: <accessToken>,
-	groupId: '11fc220c-ebba-4e55-9346-cd1eed714620',
-	institutionId: 'fb6c8114-387e-4051-8cf7-4e388a77b673'
-}
-```
+The notable decisions here were tailwind and precss. I like using Tailwind as it comes with a succint syntax, lots of sensible defaults and a built in design system. And precess lets me write dry and more maintanable css in a Sass-like style with features like imports and using `&` to denote the current selector.
 
-### Checkin child
-```
-POST https://tryfamly.co/api/v2/children/<childId>/checkins
+To use postcss without ejecting from create-react-app I also had to install react-app-rewired and react-app-rewire-postcss.
 
-Arguments: {
-	accessToken: <accessToken>
-	pickupTime: 16:00
-}
-```
+## Usability Decisions
 
-### Checkout child
-```
-POST https://tryfamly.co/api/v2/children/<childId>/checkout
-Arguments: {
-	accessToken: <accessToken>
-}
-```
+I worked primarily with tablet-viewport and tried to make items big enough to press on with fingers without accidentally clicking on something else.
+
