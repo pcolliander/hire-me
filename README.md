@@ -1,6 +1,8 @@
 
 ## Design Decisions
 
+I tried to keep things separated with files for api, types and components separated from each other. 
+
 ## Dependencies
 
 The dependencies in the project are postcss plugins. I enjoy writing css using postcss plugins as it lets me add functionality to css to make it easier to maintain.
