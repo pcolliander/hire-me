@@ -1,34 +1,20 @@
 import React, { useLayoutEffect } from 'react';
 import ReactDom from 'react-dom';
 
-const Portal = ({ children }: any) => {
-  return ReactDom.createPortal(
+const Portal = ({ children }: any) =>
+  ReactDom.createPortal(
       children,
       document.body
-  );
-}
-
-// Hook
-
-function useLockBodyScroll() {
-  useLayoutEffect(() => {
-
-    // Get original body overflow
-    const originalStyle = window.getComputedStyle(document.body).overflow;  
-
-    // Prevent scrolling on mount
-    document.body.style.overflow = 'hidden';
-
-    // Re-enable scrolling when component unmounts
-    return () => {
-      document.body.style.overflow = originalStyle;
-    }
-
-  }, []); // Empty array ensures effect is only run on mount and unmount
-}
+    );
 
 export default function({ children } :any) {
-  useLockBodyScroll();
+  useLayoutEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;  // Get original body overflow
+    document.body.style.overflow = 'hidden'; // Prevent scrolling on mount
+    return () => {
+      document.body.style.overflow = originalStyle; // Re-enable scrolling when component unmounts
+    }
+  }, []);
 
   return (
     <Portal>

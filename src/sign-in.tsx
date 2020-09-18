@@ -3,7 +3,7 @@ import Modal from './modal';
 import TimeBlock from './time-block';
 import api from './api';
 
-const hours = ['08', '09', '10', '11', '12', '13', '14', '15', '16' ];
+const hours = ['08', '09', '10', '11', '12', '13', '14', '15', '16'];
 const quarters = ['00', '15', '30', '45'];
 
 type Props = {
@@ -41,7 +41,7 @@ export default function SignIn ({ child, onClose }: Props) {
           { selectedHour && selectedQuarter &&
             <button 
               onClick={(() => api.signIn(child.childId, `${selectedHour}:${selectedQuarter}`))}
-              className='button primary'>I confirm {child.name.firstName} will be picked up at {selectedHour}:{selectedQuarter}</button>
+              className='button primary'>Sign in {child.name.firstName} and confirm pick-up time at {selectedHour}:{selectedQuarter}</button>
           }
           </div>
       </div>

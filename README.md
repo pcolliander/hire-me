@@ -15,3 +15,7 @@ To use postcss without ejecting from create-react-app I also had to install reac
 
 I worked primarily with tablet-viewport and tried to make items big enough to press on with fingers without accidentally clicking on something else.
 
+I added a simple search to make it faster to find a child in the list.
+
+Also added some styling with a border + checkmark to make it farily easy to see whether a child is checkin or not, and added a slight opacity to children who aren't checked in.
+

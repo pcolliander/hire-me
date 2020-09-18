@@ -20,10 +20,10 @@
 }
 
 .modal {
-  @apply p-8 text-white z-50 fixed top-0;
+  @apply p-8 text-white z-50 fixed top-0 w-full;
 }
 
 .modal__footer {
-  @apply flex justify-between;
+  @apply flex justify-between p-8 m-12;
 }
 
