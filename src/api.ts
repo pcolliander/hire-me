@@ -13,14 +13,28 @@ const signIn = (childId: string, pickupTime: string) => {
    method: 'POST',
    body: JSON.stringify({ pickupTime })
  })
- .then(() => window.location.reload())
+ .then(response => {
+     if (response.status === 200) {
+       alert('sign in successful');
+       window.location.reload();
+   } else {
+     alert('something went wrong with the sign in, please try again');
+   }
+ })
 }
 
 const signOut = (childId: string) => {
  window.fetch(`https://tryfamly.co/api/v2/children/${childId}/checkout?accessToken=${accessToken}`, {
    method: 'POST',
  })
- .then(() => window.location.reload());
+ .then(response => {
+     if (response.status === 200) {
+       alert('sign out successful');
+       window.location.reload();
+   } else {
+   alert('something went wrong when signing out, please try again');
+   }
+ })
 }
 
 export default {
