@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SignIn from './sign-in';
 import SignOut from './sign-out';
-import checkmark from './checkmark.svg';
+import checkmark from '../checkmark.svg';
 
 export default function Avatar(child: Child) {
   const [showSignIn, setShowSignIn] = useState(false);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Avatar from './avatar';
+import Avatar from './components/avatar';
 import api from './api';
 import './css/style.css';
 
@@ -20,7 +20,7 @@ export default function App() {
 
     <header>
       <h1>Elephants</h1>
-      <input value={searchValue} onChange={e => setSearchValue(e.target.value)} type="" placeholder='search' />
+      <input value={searchValue} onChange={e => setSearchValue(e.target.value)} type="" placeholder='search first or lastname' />
     </header>
 
       <div className='children__container'>

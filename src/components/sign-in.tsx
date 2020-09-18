@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './modal';
 import TimeBlock from './time-block';
-import api from './api';
+import api from '../api';
 
 const hours = ['08', '09', '10', '11', '12', '13', '14', '15', '16'];
 const quarters = ['00', '15', '30', '45'];
