@@ -30,18 +30,14 @@ header {
   @apply flex flex-wrap pb-40;
 
    & img.avatar {
-    border-radius: 50%;
-    height: auto;
-    border: 3px solid #e3e3e3;
-    opacity: .75;
-    padding: 1px;
+     @apply rounded-full opacity-75 p-px;
+
+     border: 3px solid #e3e3e3;
   }
 
   & .checked-in {
     p {
-      @apply text-green-600;
-
-      font-weight: 800;
+      @apply text-green-600 font-extrabold;
     }
 
     img.avatar {
@@ -90,9 +86,7 @@ header {
     @apply flex flex-col items-center;
 
     & img {
-      border-radius: 50%;
-      height: auto;
-      max-width: 100px;
+      @apply rounded-full;
     }
   }
 }
